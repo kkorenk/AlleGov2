@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="site-head">
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta name="description" content=""/>
+	<meta name="author" content=""/>
+
+	<script src="../public/js/jquery-3.1.0.min.js" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+	<script src="../public/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+	<meta th:include="this :: head" th:remove="tag"/>
+</head>
+	
+
+<nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+	       	    <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{/}">AlleGo</a>
+		</div>
+			<div class="navbar-collapse collapse" id="navbar-main">
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{/}">Link</a></li>
+		            <li><a th:href="@{/}">Link</a></li>
+		            <li><a th:href="@{/}">Link</a></li>
+		            <li><a th:href="@{/}">Link</a></li>
+		            <li><a th:href="@{/}">Link</a></li>
+		            <li class="dropdown">
+		                    <a th:href="@{/}" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+		                    <ul class="dropdown-menu">
+		                        <li><a th:href="@{/}">Action</a>
+		                        </li>
+		                        <li><a th:href="@{/}">Another action</a>
+		                        </li>
+		                        <li><a th:href="@{/}">Something else here</a>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li><a th:href="@{/}">Separated link</a>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li><a th:href="@{/}">One more separated link</a>
+		                        </li>
+		                    </ul>
+		                </li>
+				</ul>
+
+
+				<form method="POST" th:action="@{/index}" class="navbar-form navbar-right">
+		            <div class="form-group">
+		            	<input type="text"  class="form-control" name="username" placeholder="Username" />
+		                <input type="password" class="form-control" name="password" placeholder="Password" />
+		            </div>
+		            <button type="submit" class="btn btn-default">Sign in</button>
+					<!--<button class="btn btn-default" th:href="@{/registration}">Sing up</button>-->
+		        </form>
+			</div>
+	</div>
+</nav>
+
+<footer th:fragment="site-footer">
+ &copy; AlleGo by Kamil Korenkiewicz, 2017
+</footer>
+
+</html>
