@@ -3,6 +3,7 @@ package allego.models;
 /**
  * Created by ibm on 2017-07-14.
  */
+/*
 public class Product {
 
     private int id;
@@ -72,3 +73,4 @@ public class Product {
     }
 
 }
+*/

@@ -6,6 +6,7 @@ import java.util.Set;
 /**
  * Created by ibm on 2017-07-14.
  */
+/*
 @Entity
 @Table(name = "user")
 public class User {
@@ -101,3 +102,4 @@ public class User {
         this.roles = roles;
     }
 }
+*/

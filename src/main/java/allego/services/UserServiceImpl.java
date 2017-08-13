@@ -1,5 +1,5 @@
 package allego.services;
-
+/*
 import allego.models.User;
 import allego.repositories.RoleRepository;
 import allego.repositories.UserRepository;
@@ -29,9 +29,10 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(roleRepo.findAll()));
         userRepo.save(user);
     }
-*/
+
     @Override
     public User findByUsername(String username) {
         return userRepo.findByUsername(username);
     }
 }
+*/
