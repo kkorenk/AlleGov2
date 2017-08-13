@@ -1,71 +1,61 @@
 package allego.models;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by ibm on 2017-07-14.
  */
-/*
+
 @Entity
 @Table(name = "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
 
-    private long id;
-    private String username;
-    private String name;
-    private String surname;
+    @Column(name = "email", nullable = false, unique = true)
+    @Email(message = "Please provide a valid e-mail")
+    @NotEmpty(message = "Please provide an e-mail")
     private String email;
+
+    @Column(name = "password")
+    @Transient
     private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
 
+    @Column(name = "first_name")
+    @NotEmpty(message = "Please provide your first name")
+    private String firstName;
 
-    public User() {} //zostawić, wymagany przez specyfikację JPA
+    @Column(name = "last_name")
+    @NotEmpty(message = "Please provide your last name")
+    private String lastName;
 
-    public User(long id, String username, String name, String surname, String email, String password, String passwordConfirm) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.passwordConfirm = passwordConfirm;
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "confirmation_token")
+    private String confirmationToken;
+
+    public String getConfirmationToken() {
+        return confirmationToken;
     }
 
-    @Id
-    @GeneratedValue
-    public long getId() {
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -76,30 +66,35 @@ public class User {
         this.password = password;
     }
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean value) {
+        this.enabled = value;
     }
 }
-*/
