@@ -1,6 +1,6 @@
 package allego.config;
 
-import allego.services.UserSecurityService;
+import allego.services.implementations.UserSecurityService;
 import allego.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

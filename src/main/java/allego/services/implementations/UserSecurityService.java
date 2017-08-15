@@ -1,4 +1,4 @@
-package allego.services;
+package allego.services.implementations;
 
 import allego.models.User;
 import allego.repositories.UserRepository;
