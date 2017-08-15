@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Primary
 @Repository("userRepository")
 public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
     User findByEmail(String email);
-    User findByConfirmationToken(String confirmationToken);
 }

@@ -2,27 +2,17 @@ package allego.controllers;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
+public class MainController {
 
     @RequestMapping("/")
-    public String index() {
+    public String index(){
         return "/index";
-    }
-
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "/admin";
-    }
-
-    @GetMapping("/user")
-    public String user() {
-        return "/user";
     }
 
     @RequestMapping(value = "/login")
@@ -30,10 +20,6 @@ public class UserController {
         return "/login";
     }
 
-    @GetMapping("/403")
-    public String error403() {
-        return "/error/403";
-    }
 
 
 

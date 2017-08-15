@@ -1,0 +1,6 @@
+INSERT INTO user (id, email, password, first_name, last_name, enabled, confirmation_token) VALUES
+  (1, 's@email.pl', 'papaa2', 'ziom','ziom', true, '2222'),
+  (2, '2s@email.pl', 'pxaapa2', 'ziom','ziom', true, '2222'),
+  (3, 'ss@email.pl', 'paaxpa2', 'ziom','ziom', true, '2222'),
+  (4, 'sx@email.pl', 'paaxpa2', 'ziom', 'ziom',true, '2222'),
+  (5, 'sa@email.pl', 'paapza2', 'ziom','ziom', true, '2222');

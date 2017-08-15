@@ -15,6 +15,14 @@ Now is: <b th:text="${execInfo.now.time}">date and time</b>
 
 <!--<h1 th:each="u : ${allUsers}" th:text="${u.name}">User1</h1>-->
 <div th:replace="layout :: scripts"/>
+
+
+<span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="name"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+	</span>
+
 <footer th:replace="layout :: site-footer" />
 
 </body>
