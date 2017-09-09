@@ -60,7 +60,6 @@ body { padding-top: 50px; }
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #ffbbbc;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
@@ -77,4 +76,9 @@ p.error {
 
 div.logout {
   float: right;
+}
+
+.carousel .item img {
+  max-height: 300px;
+  min-width: 1224px;
 }
