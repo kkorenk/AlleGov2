@@ -39,13 +39,18 @@ public class MainController {
         return "/login";
     }
 
-    @RequestMapping("/forgetPassword")
-    public String forgetPassword(){
-
-        return "forgetPassword";
+    @RequestMapping(value = "/products")
+    public String products() {
+        return "/products";
     }
 
+    @RequestMapping(value = "/admin/addProduct")
+    public String addProduct() {
+        return "/admin/addProduct";
+    }
 
+    @RequestMapping("/forgetPassword")
+    public String forgetPassword(){return "forgetPassword";}
 
     @RequestMapping(value = "/register")
     public String register(Locale locale,@RequestParam("token") String token, Model model) {

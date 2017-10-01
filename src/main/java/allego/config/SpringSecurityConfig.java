@@ -36,7 +36,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
             authorizeRequests()
                 .antMatchers("/css/**","/js/**","/img/**" ).permitAll()
                 .antMatchers("/h2/**").permitAll()
-                .antMatchers("/","index","/register", "/confirm").permitAll()
+                .antMatchers("/","index","/register", "/confirm", "/products").permitAll()
+                .antMatchers("/admin/addProduct").permitAll() // TODO usunąc po zrobieniu logowania jako admin
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
@@ -50,9 +51,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .rememberMe();
 
         // add this line to use H2 web console
-        http.
+       /* http.
                 csrf().disable().cors().disable();
-        http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable(); */
     }
 
     @Autowired

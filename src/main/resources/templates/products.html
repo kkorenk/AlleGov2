@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="layout :: site-head">
+<title>All products</title>
+</head>
+
+
+
+<body>
+<header th:replace="layout :: navbar" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="thumbnail">
+                <a th:href="@{/product}"><img th:src="@{/img/product.png}" /></a>
+                    Product name:
+                <br>
+                    Price: 22,56$
+                    <button class="btn btn-lg btn-danger">Buy!</button>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="thumbnail">Cars</div>
+        </div>
+        <div class="col-sm-3">
+            <div class="thumbnail">Laptops</div>
+        </div>
+        <div class="col-sm-3">
+            <div class="thumbnail">Laptops</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
