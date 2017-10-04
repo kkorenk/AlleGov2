@@ -2,16 +2,25 @@ package allego.services.implementations;
 
 import allego.models.User;
 import allego.repositories.PasswordResetTokenRepository;
+import allego.repositories.RoleRepository;
 import allego.repositories.UserRepository;
 import allego.security.PasswordResetToken;
+import allego.security.UserRole;
 import allego.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     PasswordResetTokenRepository passwordResetTokenRepository;
@@ -22,9 +31,38 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void CreatePasswordResetTokenForUser(User user, String token) {
+    public void createPasswordResetTokenForUser(User user, String token) {
         final PasswordResetToken tempToken = new PasswordResetToken(token, user);
 
         passwordResetTokenRepository.save(tempToken);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User createUser (User user, Set<UserRole> userRoles) throws Exception {
+        User tempUser = userRepository.findByUsername(user.getUsername());
+
+        if(tempUser !=null){
+            throw new Exception("User with that username already exists.");
+        }else{
+            for(UserRole userRole : userRoles){
+                roleRepository.save(userRole.getRole());
+            }
+
+            user.getUserRoles().addAll(userRoles);
+
+            tempUser = userRepository.save(user);
+        }
+
+        return tempUser;
     }
 }
