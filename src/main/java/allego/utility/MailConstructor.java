@@ -19,7 +19,7 @@ public class MailConstructor {
     public SimpleMailMessage constructResetTokenEmail(
             String contextPath, Locale locale, String token, User user, String password) {
 
-        String url = contextPath ="/register?token=" + token;
+        String url = contextPath ="/confrim?token=" + token;
         String message = "\nClick this link to verify your email on Allego account.";
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());

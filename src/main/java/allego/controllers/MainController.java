@@ -60,6 +60,11 @@ public class MainController {
         return "forgetPassword";
     }
 
+    @RequestMapping("/register")
+    public String register(){
+        return "/register";
+    }
+
     @RequestMapping(value = "/register", method=RequestMethod.POST)
     public String registerPost(
             HttpServletRequest request,
@@ -112,7 +117,7 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/confirm")
     public String register(Locale locale,@RequestParam("token") String token, Model model) {
         PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
 

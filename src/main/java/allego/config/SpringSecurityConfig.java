@@ -51,9 +51,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .rememberMe();
 
         // add this line to use H2 web console
-       /* http.
+       http.
                 csrf().disable().cors().disable();
-        http.headers().frameOptions().disable(); */
+        http.headers().frameOptions().disable();
     }
 
     @Autowired
