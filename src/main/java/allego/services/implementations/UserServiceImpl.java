@@ -7,14 +7,18 @@ import allego.repositories.UserRepository;
 import allego.security.PasswordResetToken;
 import allego.security.UserRole;
 import allego.services.UserService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -52,7 +56,7 @@ public class UserServiceImpl implements UserService{
         User tempUser = userRepository.findByUsername(user.getUsername());
 
         if(tempUser !=null){
-            throw new Exception("User with that username already exists.");
+            LOG.info("User {} already exists.", user.getUsername());
         }else{
             for(UserRole userRole : userRoles){
                 roleRepository.save(userRole.getRole());

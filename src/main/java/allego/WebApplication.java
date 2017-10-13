@@ -19,29 +19,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class WebApplication implements CommandLineRunner {
+public class WebApplication  {
 
-	@Autowired
-	private UserService userService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		User user = new User();
-		user.setFirstName("Kamil");
-		user.setLastName("K");
-		user.setUsername("korek");
-		user.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user.setEmail("korekgw@wp.pl");
-		Set<UserRole> userRoleSet = new HashSet<>();
-		Role role = new Role();
-		role.setRoleId(1);
-		role.setName("ROLE_USER");
-		userRoleSet.add(new UserRole(user,role));
 
-		userService.createUser(user,userRoleSet);
-	}
+
 }
+/*
+@Autowired
+	private UserService userService;
+implements CommandLineRunner
+@Override
+public void run(String... args) throws Exception {
+	User user = new User();
+	user.setFirstName("Kamil");
+	user.setLastName("K");
+	user.setUsername("korek");
+	user.setPassword(SecurityUtility.passwordEncoder().encode("p"));
+	user.setEmail("korekgw@wp.pl");
+	Set<UserRole> userRoleSet = new HashSet<>();
+	Role role = new Role();
+	role.setRoleId(1);
+	role.setName("ROLE_USER");
+	userRoleSet.add(new UserRole(user,role));
+
+	userService.createUser(user,userRoleSet);
+}
+*/

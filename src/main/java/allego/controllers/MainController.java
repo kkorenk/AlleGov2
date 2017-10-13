@@ -7,10 +7,8 @@ import allego.security.Role;
 import allego.security.UserRole;
 import allego.services.UserService;
 import allego.services.implementations.UserSecurityService;
-import allego.services.implementations.UserServiceImpl;
 import allego.utility.MailConstructor;
 import allego.utility.SecurityUtility;
-import com.sun.mail.util.MailConnectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,7 +18,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
@@ -49,6 +50,12 @@ public class MainController {
     }
 
     // account stuff
+    //TODO przeniesc do user/ jak zrobione bedzie logowanie
+    @RequestMapping("/myAccount")
+    public String myAccount(){
+        return "/myAccount";
+    }
+
     @RequestMapping(value = "/login")
     public String login(Model model) {
         model.addAttribute("classActiveLogin", true);
@@ -72,18 +79,18 @@ public class MainController {
             @ModelAttribute("username") String username,
             Model model) throws Exception{
 
-        model.addAttribute("classActiveNewAccout", true);
+        model.addAttribute("classActiveNewAccount", true);
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
 
         if(userService.findByUsername(username) !=null){
             model.addAttribute("usernameExists", true);
-            return "myAccount";
+            return "register";
         }
 
         if(userService.findByEmail(userEmail) != null){
-            model.addAttribute("email", true);
-            return "myAccount";
+            model.addAttribute("emailExists", true);
+            return "register";
         }
 
         User user = new User();
@@ -112,13 +119,13 @@ public class MainController {
 
         model.addAttribute("emailSent", "true");
 
-        return "myAccount";
+        return "/register";
 
     }
 
 
     @RequestMapping(value = "/confirm")
-    public String register(Locale locale,@RequestParam("token") String token, Model model) {
+    public String confirm(Locale locale,@RequestParam("token") String token, Model model) {
         PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
 
         if(passwordResetToken == null){
@@ -133,7 +140,7 @@ public class MainController {
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "/myProfile";
+        return "/confirm";
     }
 
     @RequestMapping(value = "/products")
