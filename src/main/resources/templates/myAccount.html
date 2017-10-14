@@ -11,38 +11,42 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Marcus Doe
+                       Kamil Korenkiewicz
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
+                <!--<div class="profile-userbuttons">
                     <button type="button" class="btn btn-success btn-sm">Follow</button>
                     <button type="button" class="btn btn-danger btn-sm">Message</button>
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu">
-                    <ul class="nav">
+                    <ul class="nav nav-tab">
                         <li class="active">
-                            <a href="#">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Overview </a>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="#tab-1" data-toggle="tab">
                                 <i class="glyphicon glyphicon-user"></i>
-                                Account Settings </a>
+                                Personal details
+                            </a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">
+                            <a href="#tab-2" data-toggle="tab">
+                                <i class="glyphicon glyphicon-th-list"></i>
+                                Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-3" data-toggle="tab">
                                 <i class="glyphicon glyphicon-ok"></i>
-                                Tasks </a>
+                               free
+                            </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#tab-4" data-toggle="tab">
                                 <i class="glyphicon glyphicon-flag"></i>
-                                Help </a>
+                                free
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -50,8 +54,74 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="profile-content">
-                Some user related content goes here...
+            <div class="tab-content">
+                <!--User details content-->
+                <div class="tab-pane fade active" id="tab-1">
+                    <form th:action="@{/updateUserInfo}" method="post">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName"
+                                       name="firstName" th:value="${user.firstName}"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName"
+                                       name="lastName" th:value="${user.lastName}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userName">Username</label> '
+                        <input type="text" class="form-control" id="userName"
+                               name="username" th:value="${user.username}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label> '
+                        <input type="text" class="form-control" id="currentPassword"
+                            name="currentPassword" th:value="${currentPassword}"/>
+                    </div>
+                    <p style="color: #828282">Enter your current password to
+                        change the email address or password.</p>
+
+                    <div class="form-group">
+                        <label for="email">* Email Address</label> '
+                        <input type="text" class="form-control" id="email"
+                               name="email" th:value="${user.email}"/>
+                    </div>
+                    <p style="color: #828282">A valid email address. All
+                        emails from the system withll be sent to this address. The
+                        email address is not made public and will only be used if you
+                        wish to receive a new password or wish to receive certain
+                        notification.</p>
+
+                    <div class="form-group">
+                        <label for="txtNewPassword">Password</label> '
+                        <input type="password" class="form-control" id="txtNewPassword"
+                            name="newPassword"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtConfirmPassword">Confirm Password</label> '
+                        <input type="password" class="form-control" id="txtConfirmPassword"/>
+                    </div>
+                    <p style="color: #828282">To change the current user
+                        password, enter the new password in both fields.</p>
+
+                    <button type="submit" class="btn btn-primary">
+                        Create new account
+                    </button>
+                </form>
+
+                <div class="tab-pane" id="tab-2" >
+                    Tab2
+                </div>
+                <div class="tab-pane" id="tab-3" >
+                    Tab3
+                </div>
+                <div class="tab-pane" id="tab-4" >
+                    Tab4
+                </div>
             </div>
         </div>
     </div>

@@ -60,7 +60,7 @@
 				</ul>
 
 				<div class="navbar-right nav-pad">
-					<a th:href="@{/login}"><button class="btn btn-default btn-md" >Sign in</button></a>
+					<a th:classappend="${classActiveLogin}? 'active'" th:href="@{/login}"><button class="btn btn-default btn-md" >Sign in</button></a>
 					<a th:href="@{/register}"><button class="btn btn-default btn-md" >Sing up</button></a>
 					<a th:href="@{/register}">
 						<button type="button" class="btn btn-default">
