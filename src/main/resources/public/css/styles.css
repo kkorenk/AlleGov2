@@ -201,3 +201,13 @@ div.logout {
   background: #fff;
   min-height: 460px;
 }
+
+.login-container {
+  max-width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-submit{
+  width:100%;
+}
