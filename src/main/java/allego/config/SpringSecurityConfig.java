@@ -28,13 +28,23 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         return SecurityUtility.passwordEncoder();
     }
 
+    private static final String[] PUBLIC_PATHS = {
+            "/css/**",
+            "/js/**",
+            "/img/**",
+            "/fonts/**"
+    };
+
+    private static final String[] AVAILABLE_PATHS = {
+            //TODO wrzucić tu wszystkie ogólno dostepne podstrony
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.
             authorizeRequests()
-                .antMatchers("/css/**","/js/**","/img/**","/fonts/**" ).permitAll()
+                .antMatchers(PUBLIC_PATHS).permitAll()
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/","index","/register", "/confirm", "/products").permitAll()
                 .antMatchers("/admin/addProduct","/myAccount").permitAll() // TODO usunąc po zrobieniu logowania jako admin
@@ -49,11 +59,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
             .and()
                 .rememberMe();
-
         // add this line to use H2 web console, USUNĄc w WERSJI KONCOWEJ TODO
-       http.
-                csrf().disable().cors().disable();
-        http.headers().frameOptions().disable();
+       http.csrf().disable().cors().disable();
+       http.headers().frameOptions().disable();
     }
 
     @Autowired

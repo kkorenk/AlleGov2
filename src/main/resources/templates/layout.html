@@ -60,14 +60,27 @@
 				</ul>
 
 				<div class="navbar-right nav-pad">
-					<a th:classappend="${classActiveLogin}? 'active'" th:href="@{/login}"><button class="btn btn-default btn-md" >Sign in</button></a>
-					<a th:href="@{/register}"><button class="btn btn-default btn-md" >Sing up</button></a>
-					<a th:href="@{/register}">
+					<a sec:authorize="isAnonymous()" th:href="@{/login}">
+						<button class="btn btn-default btn-md" >
+							Sign in
+						</button>
+					</a>
+					<a sec:authorize="isAnonymous()" th:href="@{/register}">
+						<button class="btn btn-default btn-md" >
+							Sing up
+						</button>
+					</a>
+					<a 	sec:authorize="isAuthenticated()" th:href="@{/myAccount}">
+						<button type="button" class="btn btn-default">
+							My account
+							<span class="glyphicon glyphicon-user"></span>
+						</button>
+					</a>
+					<a sec:authorize="isAuthenticated()" th:href="@{/user/cart}">
 						<button type="button" class="btn btn-default">
 							Your cart
-
 						<span class="glyphicon glyphicon-shopping-cart"></span>
-					</button>
+						</button>
 					</a>
 				</div>
 			</div>

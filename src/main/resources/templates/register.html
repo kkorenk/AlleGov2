@@ -8,7 +8,7 @@
 <body>
 <header th:replace="layout :: navbar" />
 <div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
+    <div class="login-container">
 
         <h4>New User Registration</h4>
 
@@ -19,7 +19,7 @@
             Username already ocuppied. Please choose another username.
         </div>
         <div class="alert alert-info" th:if="${emailExists}">
-            Email already used. Please choose another email or use password recovery >>WSTAWIC LINK<<.
+            Email already used. Please choose another email or use <a th:href="@{/password}">password recovery</a>.
         </div>
         <form th:action="@{/register}" method="post">
             <div class="form-group">
@@ -40,7 +40,7 @@
                     certain notification.</p>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create new account</button>
+            <button type="submit" class="btn btn-danger login-submit">Create new account</button>
         </form>
     </div>
 </div>

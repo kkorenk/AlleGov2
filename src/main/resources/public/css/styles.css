@@ -208,6 +208,10 @@ div.logout {
   margin-left: auto;
 }
 
-.login-submit{
+.login-submit {
   width:100%;
+}
+
+.login-text {
+  padding:4px;
 }
