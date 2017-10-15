@@ -36,7 +36,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     };
 
     private static final String[] AVAILABLE_PATHS = {
-            //TODO wrzucić tu wszystkie ogólno dostepne podstrony
+            "/",
+            "index",
+            "/register",
+            "/confirm",
+            "/products",
+            "/forgetPassword"
     };
 
     @Override
@@ -45,9 +50,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         http.
             authorizeRequests()
                 .antMatchers(PUBLIC_PATHS).permitAll()
-                .antMatchers("/h2/**").permitAll()
-                .antMatchers("/","index","/register", "/confirm", "/products").permitAll()
-                .antMatchers("/admin/addProduct","/myAccount").permitAll() // TODO usunąc po zrobieniu logowania jako admin
+                .antMatchers(AVAILABLE_PATHS).permitAll()
+                .antMatchers("/h2/**").permitAll() //TODO TYLKO DO TESTÓW
+                .antMatchers("/admin/addProduct").permitAll() // TODO usunąc po zrobieniu logowania jako admin
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER")
                 .anyRequest().authenticated()

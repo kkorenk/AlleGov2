@@ -56,15 +56,40 @@ public class MainController {
     @RequestMapping("/login")
     public String login() { return "/login"; }
 
-    @RequestMapping("/forgetPassword")
-    public String forgetPassword(){ return "forgetPassword"; }
+    @RequestMapping(value = "/forgetPassword")
+    public String forgetPassword(){return "forgetPassword";}
+
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
+    public String forgetPasswordPost(
+            HttpServletRequest request,
+            @ModelAttribute("email") String userEmail,
+            Model model){
+
+        if(userService.findByEmail(userEmail) == null){
+            model.addAttribute("emailNotExists", true);
+            return "forgetPassword";
+        }
+
+
+
+
+
+
+
+
+
+
+
+        model.addAttribute("emailSent", "true");
+        return "forgetPassword";
+    }
 
     @RequestMapping("/register")
     public String register(){
         return "/register";
     }
 
-    @RequestMapping(value = "/register", method=RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPost(
             HttpServletRequest request,
             @ModelAttribute("email") String userEmail,

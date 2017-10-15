@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
->
-<head th:replace="layout :: site-head">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head"></head>
 
-</head>
 <body>
 
 <header th:replace="layout :: navbar"/>
@@ -11,16 +9,19 @@
     <div class="login-container">
         <form th:action="@{/login}" method="POST">
 
-            <h1>Please Sign In</h1>
+            <h4>Please Sign In</h4>
+            <div th:if="${param.error !=null}" class="alert alert-danger">
+                Wrong username or password. Please try again.
+            </div>
             <div class="form-group">
-                 <input type="text" name="username" id="username" class="form-control input-lg"
-                           placeholder="Username" required="true" autofocus="true"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-control input-lg"
-                           placeholder="Password" required="true"/>
-                </div>
-               <input type="submit" class="btn btn-danger login-submit" value="Log In"/>
+             <input type="text" name="username" id="username" class="form-control input-lg"
+                       placeholder="Username" required="true" autofocus="true"/>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="form-control input-lg"
+                       placeholder="Password" required="true"/>
+            </div>
+           <input type="submit" class="btn btn-danger login-submit" value="Log In"/>
         </form>
         <div class="login-text">
             <a th:href="@{/forgetPassword}">Forget password?</a> <a th:href="@{/register}">Don't have an account, yet?</a>
