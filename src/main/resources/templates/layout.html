@@ -36,7 +36,6 @@
 							<li><a th:href="@{/products}">All products</a></li>
 						</ul>
 					</li>
-					<li><a th:href="@{/myAccount}">My account</a></li>
 					<li><a th:href="@{/}">Link</a></li>
 					<li><a th:href="@{/admin/addProduct}">ADD PRODUCT</a></li>
 					<li><a th:href="@{/}">Link</a></li>
@@ -59,29 +58,36 @@
 						</li>
 				</ul>
 
-				<div class="navbar-right nav-pad">
-					<a sec:authorize="isAnonymous()" th:href="@{/login}">
-						<button class="btn btn-default btn-md" >
-							Sign in
-						</button>
-					</a>
-					<a sec:authorize="isAnonymous()" th:href="@{/register}">
-						<button class="btn btn-default btn-md" >
-							Sing up
-						</button>
-					</a>
-					<a 	sec:authorize="isAuthenticated()" th:href="@{/myAccount}">
-						<button type="button" class="btn btn-default">
-							My account
-							<span class="glyphicon glyphicon-user"></span>
-						</button>
-					</a>
-					<a sec:authorize="isAuthenticated()" th:href="@{/user/cart}">
-						<button type="button" class="btn btn-default">
-							Your cart
-						<span class="glyphicon glyphicon-shopping-cart"></span>
-						</button>
-					</a>
+				<div class="navbar-right">
+					<ul class="nav navbar-nav">
+						<li>
+							<a sec:authorize="isAuthenticated() "th:href="@{/user/myAccount}">
+								<span class="glyphicon glyphicon-user"></span>
+								My account
+							</a>
+						</li>
+						<li>
+							<a sec:authorize="isAuthenticated()" th:href="@{/user/cart}">
+								<span class="glyphicon glyphicon-shopping-cart"></span>
+								Your Cart
+							</a>
+						</li>
+						<li>
+							<a sec:authorize="isAuthenticated() "th:href="@{/logout}">
+								Logout
+							</a>
+						</li>
+						<li>
+							<a sec:authorize="isAnonymous() "th:href="@{/login}">
+								Login
+							</a>
+						</li>
+						<li>
+							<a sec:authorize="isAnonymous() "th:href="@{/register}">
+								Register
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 	</div>

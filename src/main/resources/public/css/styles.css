@@ -90,9 +90,6 @@ div.logout {
   padding-top: 8px;
 }
 
-.nav-pad {
-  padding-top: 8px;
-}
 
 .circle {
   background-color: #e74c3c;
@@ -202,6 +199,7 @@ div.logout {
   min-height: 460px;
 }
 
+/* LOGIN/REGISTER */
 .login-container {
   max-width: 400px;
   margin-right: auto;

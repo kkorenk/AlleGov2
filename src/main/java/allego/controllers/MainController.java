@@ -50,22 +50,14 @@ public class MainController {
     }
 
     // account stuff
-    //TODO przeniesc do user/ jak zrobione bedzie logowanie
-    @RequestMapping("/myAccount")
-    public String myAccount(){
-        return "/myAccount";
-    }
+    @RequestMapping("/user/myAccount")
+    public String myAccount(@ModelAttribute("user") User user, Model model){ return "/user/myAccount"; }
 
-    @RequestMapping(value = "/login")
-    public String login(Model model) {
-        model.addAttribute("classActiveLogin", true);
-        return "/login";
-    }
+    @RequestMapping("/login")
+    public String login() { return "/login"; }
+
     @RequestMapping("/forgetPassword")
-    public String forgetPassword(Model model){
-        model.addAttribute("classActiveForgetPassword", true);
-        return "forgetPassword";
-    }
+    public String forgetPassword(){ return "forgetPassword"; }
 
     @RequestMapping("/register")
     public String register(){
@@ -79,7 +71,7 @@ public class MainController {
             @ModelAttribute("username") String username,
             Model model) throws Exception{
 
-        model.addAttribute("classActiveNewAccount", true);
+
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
 
