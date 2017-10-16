@@ -172,10 +172,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-    public String confirmPost(@RequestParam("token") String token,@ModelAttribute("singup-password-confirm") String password, Model model) {
+    public String confirmPost(@RequestParam("token") String token,@ModelAttribute("signup-password-confirm") String password, Model model) {
 
         PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
-       //TODO TU JEST BLAD Long userId = (Long) passwordResetToken.getUser();
+        User user = passwordResetToken.getUser();//TODO tu jest blad przy ustawianiu nowego hasła
 
         String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
         user.setPassword(encryptedPassword);
@@ -198,9 +198,8 @@ public class MainController {
         return "/admin/addProduct";
     }
 
-
-
-
-
-
+    @RequestMapping(value = "/admin/panel")
+    public String adminPanel() {
+        return "/admin/panel";
+    }
 }

@@ -36,9 +36,7 @@
 							<li><a th:href="@{/products}">All products</a></li>
 						</ul>
 					</li>
-					<li><a th:href="@{/}">Link</a></li>
 					<li><a th:href="@{/admin/addProduct}">ADD PRODUCT</a></li>
-					<li><a th:href="@{/}">Link</a></li>
 					<li class="dropdown">
 							<a th:href="@{/}" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -61,7 +59,12 @@
 				<div class="navbar-right">
 					<ul class="nav navbar-nav">
 						<li>
-							<a sec:authorize="isAuthenticated() "th:href="@{/user/myAccount}">
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/panel}">
+								ADMIN PANEL
+							</a>
+						</li>
+						<li>
+							<a sec:authorize="isAuthenticated()" th:href="@{/user/myAccount}">
 								<span class="glyphicon glyphicon-user"></span>
 								My account
 							</a>
@@ -73,17 +76,17 @@
 							</a>
 						</li>
 						<li>
-							<a sec:authorize="isAuthenticated() "th:href="@{/logout}">
+							<a sec:authorize="isAuthenticated()" th:href="@{/logout}">
 								Logout
 							</a>
 						</li>
 						<li>
-							<a sec:authorize="isAnonymous() "th:href="@{/login}">
+							<a sec:authorize="isAnonymous()" th:href="@{/login}">
 								Login
 							</a>
 						</li>
 						<li>
-							<a sec:authorize="isAnonymous() "th:href="@{/register}">
+							<a sec:authorize="isAnonymous()" th:href="@{/register}">
 								Register
 							</a>
 						</li>
