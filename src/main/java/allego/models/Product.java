@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 @Entity
 public class Product {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
@@ -17,6 +19,15 @@ public class Product {
     private BigDecimal price;
     private String description;
     private int quantity;
+
+    public Product() {}
+    public Product(String name, BigDecimal price, String description, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+    }
+
 
     public Long getId() {
         return id;

@@ -1,4 +1,4 @@
-package allego.services;
+package allego.services.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;

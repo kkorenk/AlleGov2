@@ -1,10 +1,12 @@
 package allego.controllers;
 
 
+import allego.models.Product;
 import allego.models.User;
 import allego.security.PasswordResetToken;
 import allego.security.Role;
 import allego.security.UserRole;
+import allego.services.ProductService;
 import allego.services.UserService;
 import allego.services.implementations.UserSecurityService;
 import allego.utility.MailConstructor;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -43,6 +46,9 @@ public class MainController {
 
     @Autowired
     private MailConstructor mailConstructor;
+
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping("/")
     public String index(){
@@ -193,9 +199,28 @@ public class MainController {
         return "/products";
     }
 
-    @RequestMapping(value = "/admin/addProduct")
-    public String addProduct() {
-        return "/admin/addProduct";
+
+
+    @RequestMapping(value = "/admin/addProduct", method = RequestMethod.POST)
+    public String addProductPost(@ModelAttribute("name") String name,
+                             @ModelAttribute("price") BigDecimal price,
+                             @ModelAttribute("quantity") int quantity,
+                             @ModelAttribute("description") String description,
+                             Model model) {
+
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setQuantity(quantity);
+        product.setDescription(description);
+
+        if(productService.createProduct(product) != null){
+            model.addAttribute("productAdded",true);
+        }
+        else{
+            model.addAttribute("productFailure",true);
+        }
+        return "/admin/panel";
     }
 
     @RequestMapping(value = "/admin/panel")
