@@ -1,35 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <title>User Registration with Spring Boot</title>
-
-    <!-- Bootstrap core CSS -->
-    <link
-            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous" />
-
-   <!-- <link th:href="@{css/style.css}" rel="stylesheet" />
-    <link th:href="@{css/fv.css}" rel="stylesheet" /> -->
-
+<head th:replace="layout :: site-head">
+    <title>Password confirmation</title>
 </head>
-
-<body class="gray-bg">
-
-<div class="middle-box text-center loginscreen animated fadeInDown">
+<body>
+<header th:replace="layout :: navbar" />
+<div class="login-container">
     <div>
-
-        <hr />
-        <h4>Set Your Password</h4>
+        <h4 th:if="${passwordChanged == null}">Set Your Password</h4>
 
         <div th:if="${successMessage}" class="alert alert-success"
              role="alert" th:text=${successMessage}></div>
@@ -40,55 +19,46 @@
         <div th:if="${invalidToken}" class="alert alert-danger"
              role="alert" th:text=${invalidToken}></div>
 
-        <form th:if="!${invalidToken}" class="m-t" id="passwordForm" role="form" action="#"
-              th:object="${setPassword}" th:action="@{/confirm}" method="post">
 
-            <input type="hidden" name="token" th:value=${confirmationToken}  >
+            <form th:if="!${invalidToken}" class="m-t" id="passwordForm" role="form" action="#"
+                  th:object="${setPassword}" th:action="@{/confirm}" method="post">
 
-            <div class="form-group input-group">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input name="password" type="password" id="password"
-                       placeholder="Password" class="form-control" required />
-                <span class="glyphicon"
-                      aria-hidden="true"></span>
-            </div>
+                <input type="hidden" name="token" th:value=${confirmationToken}  >
 
-            <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input type="password" class="form-control" id="signup-password-confirm" placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
-                       data-fv-notempty-message="Please confirm password"
-                       data-fv-identical="true"
-                       data-fv-identical-field="password"
-                       data-fv-identical-message="Both passwords must be identical" />
+                <div class="form-group input-group">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+              </span>
+                    <input name="password" type="password" id="password"
+                           placeholder="Password" class="form-control" required />
+                    <span class="glyphicon"
+                          aria-hidden="true"></span>
+                </div>
 
-                <div class="help-block with-errors"></div>
-            </div>
+                <div class="form-group input-group has-feedback">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+              </span>
+                    <input type="password" class="form-control" id="signup-password-confirm" placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
+                           data-fv-notempty-message="Please confirm password"
+                           data-fv-identical="true"
+                           data-fv-identical-field="password"
+                           data-fv-identical-message="Both passwords must be identical" />
+
+                    <div class="help-block with-errors"></div>
+                </div>
 
 
 
-            <button type="submit"
-                    class="btn btn-primary block full-width m-b">Save
-            </button>
+                <button type="submit"
+                        class="btn btn-alert block full-width">Save
+                </button>
 
-        </form>
+            </form>
 
 
     </div>
 </div>
-
-<!-- jQuery-->
-<script
-        src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Bootstrap -->
-<script
-        src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>

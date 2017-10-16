@@ -65,22 +65,29 @@ public class MainController {
             @ModelAttribute("email") String userEmail,
             Model model){
 
-        if(userService.findByEmail(userEmail) == null){
+        User user = userService.findByEmail(userEmail);
+        if(user == null){
             model.addAttribute("emailNotExists", true);
             return "forgetPassword";
         }
 
 
+        String password = SecurityUtility.randomPassword();
 
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
 
+        userService.save(user);
 
+        String token = UUID.randomUUID().toString();
+        userService.createPasswordResetTokenForUser(user,token);
 
+        String appUrl ="http://" +request.getServerName()+":" + request.getServerPort() +request.getContextPath();
+        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
+        mailSender.send(email);
 
-
-
-
-        model.addAttribute("emailSent", "true");
+        model.addAttribute("recoveryEmailSent", "true");
         return "forgetPassword";
     }
 
@@ -143,8 +150,12 @@ public class MainController {
 
     @RequestMapping(value = "/confirm")
     public String confirm(Locale locale,@RequestParam("token") String token, Model model) {
-        PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
 
+
+        PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
+        if(token.equals("0")){
+            model.addAttribute("passwordChanged", true);
+        }
         if(passwordResetToken == null){
             String message = "Ïnvalid token.";
             model.addAttribute("message", message);
@@ -158,6 +169,23 @@ public class MainController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return "/confirm";
+    }
+
+    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
+    public String confirmPost(@RequestParam("token") String token,@ModelAttribute("singup-password-confirm") String password, Model model) {
+
+        PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
+       //TODO TU JEST BLAD Long userId = (Long) passwordResetToken.getUser();
+
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
+        String username = user.getUsername();
+
+        UserDetails userDetails = userSecurityService.loadUserByUsername(username);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        model.addAttribute("passwordChanged",true);
+        return "/confirm?token=0";
     }
 
     @RequestMapping(value = "/products")
