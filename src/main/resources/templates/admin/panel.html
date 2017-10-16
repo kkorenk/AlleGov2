@@ -1,28 +1,91 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="layout :: site-head">
 </head>
 <body>
-
-<div th:replace="layout :: navbar"/>
-
 <div class="container">
+    <header th:replace="layout :: navbar" />
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        ADMINISTRATOR
+                    </div>
+                </div>
 
-    <div class="starter-template">
-        <h1>Admin page (Spring Security protected)</h1>
+                <div class="profile-usermenu">
+                    <ul class="nav nav-tab">
+                        <li class="active">
+                            <a href="#tab-1" data-toggle="tab">
+                                ADD PRODUCT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-2" data-toggle="tab">
+                                TODO ORDERS
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-3" data-toggle="tab">
+                                TODO PRODUCTS STOCK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-4" data-toggle="tab">
+                                TODO STATISTICS tempalty fajne so
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-1">
+                    <form th:action="@{/admin/addProduct}" method="post">
+                        <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name"
+                                       name="name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="number" step="any" class="form-control" id="price"
+                                   name="price"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" step="1" class="form-control" id="quantity"
+                                   name="quantity"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description"
+                                   name="description"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Add product
+                        </button>
+                    </form>
+                </div>
 
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-
+                <div class="tab-pane fade" id="tab-2" >
+                    Tab2
+                </div>
+                <div class="tab-pane fade" id="tab-3" >
+                    Tab3
+                </div>
+                <div class="tab-pane fade" id="tab-4" >
+                    Tab4
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
-<!-- /.container -->
 
-<div th:replace="layout :: scripts"/>
-<footer th:replace="layout :: site-footer" />
+
+
 
 </body>
 </html>
