@@ -27,10 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -194,8 +191,13 @@ public class MainController {
         return "/confirm?token=0";
     }
 
-    @RequestMapping(value = "/products")
-    public String products() {
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    public String products(Model model) {
+
+        List<Product> products = productService.getAllProducts();
+
+        model.addAttribute("products", products);
+
         return "/products";
     }
 

@@ -6,6 +6,8 @@ import allego.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by ibm on 2017-10-17.
  */
@@ -18,5 +20,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product createProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 }

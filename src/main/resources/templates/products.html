@@ -11,23 +11,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3"  th:each="product : ${products}" >
             <div class="thumbnail">
                 <a th:href="@{/product}"><img th:src="@{/img/product.png}" /></a>
-                    Product name:
-                <br>
-                    Price: 22,56$
-                    <button class="btn btn-lg btn-danger">Buy!</button>
+                    Product name:<div th:text="${product.name}" ></div>
+                    Price: <div th:text="${product.price}"> </div>
+                    <button class="btn btn-danger"><a> ADD TO CART</a></button>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="thumbnail">Cars</div>
-        </div>
-        <div class="col-sm-3">
-            <div class="thumbnail">Laptops</div>
-        </div>
-        <div class="col-sm-3">
-            <div class="thumbnail">Laptops</div>
         </div>
     </div>
 </div>
