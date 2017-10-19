@@ -156,24 +156,29 @@ public class MainController {
 
 
         PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
-        if(token.equals("0")){
-            model.addAttribute("passwordChanged", true);
-        }
+
         if(passwordResetToken == null){
             String message = "Ïnvalid token.";
-            model.addAttribute("message", message);
-            return "redirect:/badRequest";
+            model.addAttribute("errorMessage", message);
+            return "/confirm";
         }
+
         User user = passwordResetToken.getUser();
+        user.setEnabled(true);
+        userService.save(user);
         String username = user.getUsername();
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        String message = "Your account has been activated succesfully.";
+        model.addAttribute("successMessage", message);
+
         return "/confirm";
     }
 
+/*
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public String confirmPost(@RequestParam("token") String token,@ModelAttribute("signup-password-confirm") String password, Model model) {
 
@@ -190,6 +195,7 @@ public class MainController {
         model.addAttribute("passwordChanged",true);
         return "/confirm?token=0";
     }
+*/
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String products(Model model) {

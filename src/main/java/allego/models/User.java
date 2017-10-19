@@ -32,7 +32,7 @@ public class User implements UserDetails{
     @Column(name = "email", nullable = false, updatable = false, unique = true)
     private String email;
     private String phone;
-    private boolean enabled=true;
+    private boolean enabled=false;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
