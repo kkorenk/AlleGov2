@@ -225,8 +225,13 @@ public class MainController {
         return "/admin/panel";
     }
 
-    @RequestMapping(value = "/admin/panel")
-    public String adminPanel() {
+    @RequestMapping(value = "/admin/panel", method = RequestMethod.GET)
+    public String adminPanel(Model model) {
+        List<Product> products = productService.getAllProducts();
+
+        model.addAttribute("products", products);
         return "/admin/panel";
     }
+
+
 }

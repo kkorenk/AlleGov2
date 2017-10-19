@@ -27,8 +27,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#tab-3" data-toggle="tab">
-                                TODO PRODUCTS STOCK
+                            <a href=#tab-3 th:action="@{/admin/getProducts}" data-toggle="tab" >
+                                PRODUCTS STOCK
                             </a>
                         </li>
                         <li>
@@ -80,7 +80,22 @@
                     Tab2
                 </div>
                 <div class="tab-pane fade" id="tab-3" >
-                    Tab3
+                    <table>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Quantity</td>
+                            <td>Price</td>
+                            <td>Description</td>
+                        </tr>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.quantity}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.description}"></td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="tab-pane fade" id="tab-4" >
                     Tab4
