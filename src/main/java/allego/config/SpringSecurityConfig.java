@@ -53,8 +53,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(AVAILABLE_PATHS).permitAll()
                 .antMatchers("/h2/**").permitAll() //TODO TYLKO DO TESTÓW
                // .antMatchers("/admin/addProduct").permitAll() // TODO usunąc po zrobieniu logowania jako admin
-                .antMatchers("/**").hasAnyRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .formLogin().failureUrl("/login?error").defaultSuccessUrl("/")

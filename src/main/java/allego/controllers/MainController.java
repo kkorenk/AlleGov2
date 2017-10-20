@@ -53,7 +53,7 @@ public class MainController {
     }
 
     // account stuff
-    @RequestMapping("/user/myAccount")
+    @RequestMapping(value = "/user/myAccount", method = RequestMethod.GET)
     public String myAccount(@ModelAttribute("user") User user, Model model){ return "/user/myAccount"; }
 
     @RequestMapping("/login")
