@@ -53,8 +53,12 @@ public class MainController {
     }
 
     // account stuff
-    @RequestMapping(value = "/user/myAccount", method = RequestMethod.GET)
-    public String myAccount(@ModelAttribute("user") User user, Model model){ return "/user/myAccount"; }
+    @RequestMapping(value = "/user/myAccount")
+    public String myAccount(Model model){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        return "/user/myAccount";
+    }
 
     @RequestMapping("/login")
     public String login() { return "/login"; }
