@@ -14,14 +14,6 @@
                        USERNAME LASTNAME
                     </div>
                 </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <!--<div class="profile-userbuttons">
-                    <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
-                </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu">
                     <ul class="nav nav-tab">
                         <li class="active">
@@ -33,7 +25,7 @@
                         <li>
                             <a href="#tab-2" data-toggle="tab">
                                 <i class="glyphicon glyphicon-th-list"></i>
-                                Orders
+                                Change password
                             </a>
                         </li>
                         <li>
@@ -55,67 +47,53 @@
         </div>
         <div class="col-md-9">
             <div class="tab-content">
-                <!--User details content-->
-                <div class="tab-pane fade active" id="tab-1">
+
+                <div class="tab-pane active" id="tab-1">
                     <form th:action="@{/updateUserInfo}" method="post">
                         <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName"
-                                       name="firstName" th:value="${user.firstName}"/>
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName"
-                                       name="lastName" th:value="${user.lastName}"/>
-                            </div>
+                            <label for="firstName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName"
+                                   name="firstName" th:value="${user.firstName}"/>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="userName">Username</label> '
-                        <input type="text" class="form-control" id="userName"
-                               name="username" th:value="${user.username}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="currentPassword">Current Password</label> '
-                        <input type="text" class="form-control" id="currentPassword"
-                            name="currentPassword" th:value="${currentPassword}"/>
-                    </div>
-                    <p style="color: #828282">Enter your current password to
-                        change the email address or password.</p>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName"
+                                   name="lastName" th:value="${user.lastName}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email"
+                                   name="email" th:value="${user.email}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" id="phone"
+                                   name="phone" th:value="${user.phone}"/>
+                        </div>
+                    </form>
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                 </div>
 
+                <div class="tab-pane" id="tab-2" >
                     <div class="form-group">
-                        <label for="email">* Email Address</label> '
-                        <input type="text" class="form-control" id="email"
-                               name="email" th:value="${user.email}"/>
-                    </div>
-                    <p style="color: #828282">A valid email address. All
-                        emails from the system withll be sent to this address. The
-                        email address is not made public and will only be used if you
-                        wish to receive a new password or wish to receive certain
-                        notification.</p>
-
-                    <div class="form-group">
-                        <label for="txtNewPassword">Password</label> '
+                        <label for="txtNewPassword">Password</label>
                         <input type="password" class="form-control" id="txtNewPassword"
-                            name="newPassword"/>
+                               name="newPassword"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="txtConfirmPassword">Confirm Password</label> '
+                        <label for="txtConfirmPassword">Confirm Password</label>
                         <input type="password" class="form-control" id="txtConfirmPassword"/>
                     </div>
                     <p style="color: #828282">To change the current user
                         password, enter the new password in both fields.</p>
-
                     <button type="submit" class="btn btn-primary">
-                        Create new account
+                        Change password
                     </button>
-                </form>
-
-                <div class="tab-pane" id="tab-2" >
-                    Tab2
                 </div>
+
                 <div class="tab-pane" id="tab-3" >
                     Tab3
                 </div>
