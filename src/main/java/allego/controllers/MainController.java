@@ -60,6 +60,20 @@ public class MainController {
         return "/user/myAccount";
     }
 
+    @RequestMapping(value = "/user/changePassword", method = RequestMethod.POST)
+    public String changePassword(Model model, @ModelAttribute("newPassword") String newPassword){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(newPassword);
+        user.setPassword(encryptedPassword);
+
+        if(userService.save(user) != null){
+            model.addAttribute("passwordChanged",true);
+        }
+        model.addAttribute("user", user);
+        return "/user/myAccount";
+    }
+
     @RequestMapping("/login")
     public String login() { return "/login"; }
 
@@ -97,6 +111,7 @@ public class MainController {
         model.addAttribute("recoveryEmailSent", "true");
         return "forgetPassword";
     }
+
 
     @RequestMapping("/register")
     public String register(){

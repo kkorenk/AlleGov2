@@ -20,7 +20,7 @@ public class MailConstructor {
             String contextPath, Locale locale, String token, User user, String password) {
 
         String url = contextPath +"/confirm?token=" + token;
-        String message = "\nClick this link to verify your email on Allego account. Your password is: \n" + password;
+        String message = "\nClick this link to verify your email on Allego account. Your password is: \n" + password +"\nYou can change your password in MyAccount section.";
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("AlleGo - new account confirmation");

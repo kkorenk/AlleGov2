@@ -5,6 +5,9 @@
 <body>
 <div class="container">
     <header th:replace="layout :: navbar" />
+    <div class="alert alert-success" th:if="${passwordChanged}">
+        Password has been changed.
+    </div>
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -53,7 +56,7 @@
                         <div class="form-group">
                             <label for="firstName">First Name:</label>
                             <input type="text" class="form-control" id="firstName"
-                                   name="firstName" th:value="${user.firstName}"/>
+                                   name="firstName" th:value="${user.firstName != null} ? ${user.firstName}"/>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last Name:</label>
@@ -70,28 +73,32 @@
                             <input type="text" class="form-control" id="phone"
                                    name="phone" th:value="${user.phone}"/>
                         </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
                     </form>
-                    <button type="submit" class="btn btn-primary">
-                        Save
-                    </button>
                  </div>
 
                 <div class="tab-pane" id="tab-2" >
-                    <div class="form-group">
-                        <label for="txtNewPassword">Password</label>
-                        <input type="password" class="form-control" id="txtNewPassword"
-                               name="newPassword"/>
-                    </div>
+                    <form th:action="@{/user/changePassword}" method="post">
+                        <div class="form-group">
+                            <label for="newPassword">Password</label>
+                            <input type="password" class="form-control" id="newPassword"
+                                   name="newPassword"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="txtConfirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="txtConfirmPassword"/>
-                    </div>
-                    <p style="color: #828282">To change the current user
-                        password, enter the new password in both fields.</p>
-                    <button type="submit" class="btn btn-primary">
-                        Change password
-                    </button>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                   name="confirmPassword"/>
+                        </div>
+                        <p style="color: #828282">To change the current user
+                            password, enter the new password in both fields.</p>
+                        <button type="submit" class="btn btn-primary">
+                            Change password
+                        </button>
+                    </form>
                 </div>
 
                 <div class="tab-pane" id="tab-3" >
