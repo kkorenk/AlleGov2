@@ -8,6 +8,9 @@
     <div class="alert alert-success" th:if="${passwordChanged}">
         Password has been changed.
     </div>
+    <div class="alert alert-success" th:if="${infoUpdated}">
+        Account information has been updated.
+    </div>
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -27,7 +30,7 @@
                         </li>
                         <li>
                             <a href="#tab-2" data-toggle="tab">
-                                <i class="glyphicon glyphicon-th-list"></i>
+                                <i class="glyphicon glyphicon-lock"></i>
                                 Change password
                             </a>
                         </li>
@@ -52,11 +55,11 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="tab-1">
-                    <form th:action="@{/updateUserInfo}" method="post">
+                    <form th:action="@{/user/updateUserInfo}" method="post">
                         <div class="form-group">
                             <label for="firstName">First Name:</label>
                             <input type="text" class="form-control" id="firstName"
-                                   name="firstName" th:value="${user.firstName != null} ? ${user.firstName}"/>
+                                   name="firstName" th:value="${user.firstName}"/>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last Name:</label>

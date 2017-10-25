@@ -60,6 +60,27 @@ public class MainController {
         return "/user/myAccount";
     }
 
+    @RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
+    public String updateUserInfo(Model model,
+                                 @ModelAttribute("firstName") String firstName,
+                                 @ModelAttribute("lastName") String lastName,
+                                 @ModelAttribute("email") String email,
+                                 @ModelAttribute("phone") String phone
+    ){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhone(phone);
+
+        if(userService.save(user) != null){
+            model.addAttribute("infoUpdated",true);
+        }
+        model.addAttribute("user", user);
+        return "/user/myAccount";
+    }
+
     @RequestMapping(value = "/user/changePassword", method = RequestMethod.POST)
     public String changePassword(Model model, @ModelAttribute("newPassword") String newPassword){
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
