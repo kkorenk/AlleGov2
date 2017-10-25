@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  padding-top: 51px;
   background: #F1F3FA;
 }
 
@@ -81,9 +81,11 @@ div.logout {
   float: right;
 }
 
-.carousel .item img {
-  max-height: 400px;
-  min-width: 1224px;
+.carousel-inner > .item > img {
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
 }
 
 .logo {
@@ -212,4 +214,29 @@ div.logout {
 
 .login-text {
   padding:4px;
+}
+
+/*FOOTER*/
+
+footer {
+  padding-top: 20px;
+}
+
+.border-ftr {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.navbar-footer {
+  margin-bottom: 0;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 0;
+  border: none;
+}
+
+footer .navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
 }

@@ -96,12 +96,27 @@
 </nav>
 
 <footer th:fragment="site-footer">
-	<span sec:authorize="isAuthenticated()">
-                | Logged user: <span sec:authentication="name"></span> |
-                Roles: <span sec:authentication="principal.authorities"></span> |
-                <a th:href="@{/logout}">Sign Out</a>
-	</span>
- &copy; AlleGo by Kamil Korenkiewicz, 2017
+ <div class="container">
+	 <div class="row border-ftr">
+		 <div class="col-sm-12">
+			 <nav class="navbar navbar-footer ">
+				 <ul class="nav navbar-nav">
+					 <li><a href="#">About Best Store</a></li>
+					 <li><a href="#">Contact Us</a></li>
+					 <li><a href="#">Social Media</a></li>
+				 </ul>
+			 </nav>
+		 </div>
+	 </div>
+	 <div class="row leg-room">
+		 <div class="col-md-12 text-center">
+			 <h1 class="text-uppercase">AlleGo</h1>
+			 <p class="monospaced">
+				 &copy;2017 AlleGo Company Inc.
+				 <span class="text-uppercase">All Rights Reserved</span></p>
+		 </div>
+	 </div>
+ </div>
 </footer>
 
 </html>
