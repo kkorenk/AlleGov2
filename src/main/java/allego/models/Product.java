@@ -1,5 +1,7 @@
 package allego.models;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -19,6 +21,10 @@ public class Product {
     private BigDecimal price;
     private String description;
     private int quantity;
+
+
+    @Transient
+    private MultipartFile image;
 
     public Product() {}
     public Product(String name, BigDecimal price, String description, int quantity) {
@@ -68,4 +74,13 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
+    }
+
 }

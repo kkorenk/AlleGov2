@@ -32,7 +32,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
             "/css/**",
             "/js/**",
             "/img/**",
-            "/fonts/**"
+            "/fonts/**",
+            "/img/product/**"
     };
 
     private static final String[] AVAILABLE_PATHS = {

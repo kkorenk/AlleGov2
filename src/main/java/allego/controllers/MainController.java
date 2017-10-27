@@ -24,8 +24,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -251,23 +256,39 @@ public class MainController {
 
     @RequestMapping(value = "/admin/addProduct", method = RequestMethod.POST)
     public String addProductPost(@ModelAttribute("name") String name,
-                             @ModelAttribute("price") BigDecimal price,
-                             @ModelAttribute("quantity") int quantity,
-                             @ModelAttribute("description") String description,
-                             Model model) {
+                                 @ModelAttribute("price") BigDecimal price,
+                                 @ModelAttribute("quantity") int quantity,
+                                 @ModelAttribute("description") String description,
+                                 @ModelAttribute("image") MultipartFile image,
+                                 Model model) {
+
 
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
         product.setQuantity(quantity);
         product.setDescription(description);
+        product.setImage(image);
 
-        if(productService.createProduct(product) != null){
+       product = productService.createProduct(product);
+        if(product != null){
             model.addAttribute("productAdded",true);
         }
         else{
             model.addAttribute("productFailure",true);
         }
+
+        try {
+            byte[] bytes = image.getBytes();
+            String tmp = product.getId() + ".png";
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream(new File("src/main/resources/public/img/product/" + tmp)));
+            stream.write(bytes);
+            stream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "/admin/panel";
     }
 
