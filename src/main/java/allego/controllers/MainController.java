@@ -300,5 +300,10 @@ public class MainController {
         return "/admin/panel";
     }
 
+    @RequestMapping(value = "/user/shoppingCart")
+    public String shoppingCart(){
+        return "/user/shoppingCart";
+    }
+
 
 }

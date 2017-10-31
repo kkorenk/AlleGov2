@@ -26,7 +26,8 @@ public class WebApplication  {
 
 }
 
-/*@SpringBootApplication
+/*
+@SpringBootApplication
 public class WebApplication  implements CommandLineRunner{
 
 	@Autowired
@@ -68,4 +69,5 @@ public class WebApplication  implements CommandLineRunner{
 
 		userService.createUser(user2, userRoleSet2);
 	}
-}*/
+}
+*/
