@@ -1,9 +1,12 @@
 package allego.models;
 
+import allego.models.cart.ProductToCartItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by ibm on 2017-10-16.
@@ -22,9 +25,13 @@ public class Product {
     private String description;
     private int quantity;
 
-
     @Transient
     private MultipartFile image;
+
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<ProductToCartItem> productToCartItemList;
 
     public Product() {}
     public Product(String name, BigDecimal price, String description, int quantity) {
@@ -81,6 +88,14 @@ public class Product {
 
     public void setImage(MultipartFile image) {
         this.image = image;
+    }
+
+    public List<ProductToCartItem> getProductToCartItemList() {
+        return productToCartItemList;
+    }
+
+    public void setProductToCartItemList(List<ProductToCartItem> productToCartItemList) {
+        this.productToCartItemList = productToCartItemList;
     }
 
 }
