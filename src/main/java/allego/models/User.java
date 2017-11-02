@@ -1,5 +1,6 @@
 package allego.models;
 
+import allego.models.cart.ShoppingCart;
 import allego.security.Authority;
 import allego.security.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,6 +34,9 @@ public class User implements UserDetails{
     private String email;
     private String phone;
     private boolean enabled=false;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
@@ -91,10 +95,17 @@ public class User implements UserDetails{
         this.enabled = value;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
     public String getUsername() {
         return username;
     }
-
 
     public void setUsername(String username) {
         this.username = username;
