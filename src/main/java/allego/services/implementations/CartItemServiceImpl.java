@@ -14,11 +14,15 @@ import java.util.List;
  */
 @Service
 public class CartItemServiceImpl implements CartItemService{
-
     @Autowired
     private CartItemRepository cartItemRepository;
 
     public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart){
         return cartItemRepository.findByShoppingCart(shoppingCart);
+    }
+
+    @Override
+    public void updateCartItem(CartItem cartItem) {
+
     }
 }

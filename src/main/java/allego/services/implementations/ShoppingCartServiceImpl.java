@@ -22,7 +22,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     private CartItemService cartItemService;
 
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository
+    private ShoppingCartRepository shoppingCartRepository;
 
     public void updateShoppingCart(ShoppingCart shoppingCart){
         BigDecimal cartTotal = new BigDecimal(0);
