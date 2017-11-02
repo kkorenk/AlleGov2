@@ -95,7 +95,6 @@ div.logout {
 .product-category {
   max-width:100%;
   height:auto;
-
 }
 
 .col-sm-4{
@@ -329,3 +328,28 @@ footer .navbar .navbar-nav {
 .jumbotron {
   margin-top: 10px;
 }
+
+/*ALL PRODUCTS*/
+
+.product {
+  background-color:#ffffff;
+  padding:10px;
+  margin-bottom:10px;
+  overflow: hidden;
+}
+
+.product img{
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pr-row{
+  padding-top: 10px;
+}
+
+.btn-cart{
+  width: 100%;
+
+}
+
