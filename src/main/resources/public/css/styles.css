@@ -92,7 +92,10 @@ div.logout {
   padding-top: 8px;
 }
 
-
+.product-category {
+  max-width:100%;
+  height:auto;
+}
 .circle {
   background-color: #e74c3c;
   width: 200px;
