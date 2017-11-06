@@ -1,6 +1,7 @@
 package allego.services.implementations;
 
 import allego.models.User;
+import allego.models.cart.ShoppingCart;
 import allego.repositories.PasswordResetTokenRepository;
 import allego.repositories.RoleRepository;
 import allego.repositories.UserRepository;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -52,6 +54,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public User createUser (User user, Set<UserRole> userRoles) throws Exception {
         User tempUser = userRepository.findByUsername(user.getUsername());
 
@@ -63,6 +66,10 @@ public class UserServiceImpl implements UserService{
             }
 
             user.getUserRoles().addAll(userRoles);
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            user.setShoppingCart(shoppingCart);
 
             tempUser = userRepository.save(user);
         }

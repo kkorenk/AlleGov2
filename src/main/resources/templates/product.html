@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Product details</title>
 </head>
 <body>
 <div class="container">
+    <div class="alert alert-success" th:if="${addProductSuccess}">
+        Product added to cart.
+    </div>
+    <div class="alert alert-danger" th:if="${nStock}">
+        Not enough products in stock.
+    </div>
     <div class="row">
         <div class="col-md-6">
             … [this is the product image]

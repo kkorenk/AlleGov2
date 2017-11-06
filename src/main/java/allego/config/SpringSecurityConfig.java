@@ -42,6 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
             "/register",
             "/confirm",
             "/products",
+            "/product",
             "/forgetPassword"
     };
 
@@ -53,7 +54,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(PUBLIC_PATHS).permitAll()
                 .antMatchers(AVAILABLE_PATHS).permitAll()
                 .antMatchers("/h2/**").permitAll() //TODO TYLKO DO TESTÓW
-               // .antMatchers("/admin/addProduct").permitAll() // TODO usunąc po zrobieniu logowania jako admin
                 .antMatchers("/user/**").hasAnyRole("USER")
                 .antMatchers("/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()

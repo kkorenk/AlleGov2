@@ -28,10 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -184,7 +186,7 @@ public class MainController {
         String token = UUID.randomUUID().toString();
         userService.createPasswordResetTokenForUser(user,token);
 
-        String appUrl ="http://" +request.getServerName()+":" + request.getServerPort() +request.getContextPath();
+        String appUrl ="http://" + request.getServerName()+":" + request.getServerPort() + request.getContextPath();
         SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         mailSender.send(email);
@@ -241,6 +243,29 @@ public class MainController {
         return "/confirm?token=0";
     }
 */
+
+    @RequestMapping("/product")
+    public String product(@PathParam("id") Long id, Model model, Principal principal){
+
+        if(principal != null) {
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
+
+        Product product = productService.findById(id);
+
+        model.addAttribute("product",product);
+
+        List<Integer> qtyList = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+
+        model.addAttribute("qtyList", qtyList);
+        model.addAttribute("qty", 1);
+
+        return "/product";
+    }
+
+
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String products(Model model) {
