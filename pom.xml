@@ -58,6 +58,7 @@
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
+			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -69,17 +70,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
-		<!-- password strenght estimation -->
-		<dependency>
-			<groupId>com.nulab-inc</groupId>
-			<artifactId>zxcvbn</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>net.sourceforge.nekohtml</groupId>
-			<artifactId>nekohtml</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
