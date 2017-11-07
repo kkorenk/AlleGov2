@@ -27,6 +27,7 @@ public class WebApplication  {
 }
 
 /*
+
 @SpringBootApplication
 public class WebApplication  implements CommandLineRunner{
 
@@ -41,11 +42,11 @@ public class WebApplication  implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		User user = new User();
 		user.setEnabled(true);
-		user.setFirstName("Kamil");
-		user.setLastName("K");
-		user.setUsername("korek");
+		user.setFirstName("first_name");
+		user.setLastName("last_name");
+		user.setUsername("admin");
 		user.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user.setEmail("korekgw@wp.pl");
+		user.setEmail("someuser@somemail.pl");
 		Set<UserRole> userRoleSet = new HashSet<>();
 		Role role = new Role();
 		role.setRoleId(2);
@@ -70,4 +71,5 @@ public class WebApplication  implements CommandLineRunner{
 		userService.createUser(user2, userRoleSet2);
 	}
 }
+
 */

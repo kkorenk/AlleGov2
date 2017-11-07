@@ -20,6 +20,7 @@ import java.util.List;
 @Service
 public class CartItemServiceImpl implements CartItemService{
 
+
     @Autowired
     private CartItemRepository cartItemRepository;
 
@@ -53,6 +54,7 @@ public class CartItemServiceImpl implements CartItemService{
                 BigDecimal bigDecimal = new BigDecimal(qty);
                 cartItem.setSubTotal(product.getPrice().multiply(bigDecimal));
                 cartItemRepository.save(cartItem);
+                return cartItem;
             }
         }
         CartItem cartItem = new CartItem();
@@ -69,5 +71,10 @@ public class CartItemServiceImpl implements CartItemService{
         productToCartItemRepository.save(productToCartItem);
 
         return cartItem;
+    }
+
+    @Override
+    public CartItem findById(Long id) {
+        return cartItemRepository.findOne(id);
     }
 }

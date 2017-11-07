@@ -95,6 +95,7 @@ div.logout {
 .product-category {
   max-width:100%;
   height:auto;
+  max-height: 200px;
 }
 
 .col-sm-4{
