@@ -7,13 +7,12 @@
 
 
 <body>
-<header th:replace="layout :: navbar" />
-
 <div class="container">
+    <header th:replace="layout :: navbar" />
     <div class="row pr-row">
         <div class="col-sm-3"  th:each="product : ${products}" >
             <div class="product">
-                <a th:href="@{/product}"><img class="product-category" th:src="@{/img/product/} + ${product.id} + '.png'"/></a>
+                <a th:href="@{/product?id=} + ${product.id}"><img class="product-category" th:src="@{/img/product/} + ${product.id} + '.png'"/></a>
                 <div class="col-sm-9">
                     <p th:text="${product.name}" ></p>
                 </div>
@@ -22,7 +21,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-danger btn-cart"> ADD TO CART</button>
+                        <a th:href="@{/product?id=} + ${product.id}"><button class="btn btn-danger btn-cart"> View detalis</button></a>
                     </div>
                 </div>
             </div>

@@ -7,20 +7,48 @@
 </head>
 <body>
 <div class="container">
+    <header th:replace="layout :: navbar" />
     <div class="alert alert-success" th:if="${addProductSuccess}">
         Product added to cart.
     </div>
     <div class="alert alert-danger" th:if="${nStock}">
         Not enough products in stock.
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            … [this is the product image]
+    <form th:action="@{/user/shoppingCart/addItem}" method="post">
+        <input hidden="hidden" th:field="*{product.id}" />
+        <div class="row">
+            <div class="col-md-6">
+                <img class="product-detail-img" th:src="@{/img/product/} + ${product.id} + '.png'"/>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <h1 th:text="${product.name}"></h1>
+                </div>
+                <div class="row">
+                    <p th:text="${product.description}"></p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 th:text="${product.price} + '$'"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Quantity: </span>
+                        <select name="qty">
+                            <option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-submit btn-danger"> ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            …[this is the product information]
-        </div>
-    </div>
+    </form>
 </div>
 </body>
 </html>
