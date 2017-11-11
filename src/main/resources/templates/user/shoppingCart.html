@@ -24,17 +24,21 @@
             </div>
         </div>
         <div class="row cart-row" th:each="cartItem : ${cartItemList}">
+            <form th:action="@{/user/updateCartItem}" method="post">
+                <input type="hidden" name="id" id="id" th:value="${cartItem.id}">
             <div class="col-sm-3">
                 <img class="product-detail-img img-responsive" th:src="@{/img/product/} + ${cartItem.product.id} + '.png'"/>
             </div>
             <div class="col-sm-3">
             </div>
             <div class="col-sm-3">
-                <p th:text="${cartItem.quantity}" ></p>
+                    <input type="number" name="qty" id="qty" min="1" max="100" th:value="${cartItem.quantity}">
+                    <button type="submit" class="btn btn-danger">Refresh</button>
             </div>
             <div class="col-sm-3">
                 <p th:text="${cartItem.subTotal} + '$'" ></p>
             </div>
+            </form>
         </div>
         <div class="col-sm-6">
         </div>

@@ -14,7 +14,7 @@
     <div class="alert alert-danger" th:if="${nStock}">
         Not enough products in stock.
     </div>
-    <form th:action="@{/addItem}" method="post">
+    <form th:action="@{/user/addItem}" method="post">
         <input hidden="hidden" th:field="*{product.id}" />
         <div class="row">
             <div class="col-md-6">
