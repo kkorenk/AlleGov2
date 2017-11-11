@@ -54,7 +54,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(PUBLIC_PATHS).permitAll()
                 .antMatchers(AVAILABLE_PATHS).permitAll()
                 .antMatchers("/h2/**").permitAll() //TODO TYLKO DO TESTÓW
-                .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/user/**","/addItem").hasAnyRole("USER")
                 .antMatchers("/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
             .and()

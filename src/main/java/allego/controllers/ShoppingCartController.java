@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 import java.util.List;
@@ -21,7 +22,6 @@ import java.util.List;
  * Created by Kamil on 02.11.2017.
  */
 @Controller
-@RequestMapping("/user/shoppingCart")
 public class ShoppingCartController {
 
     @Autowired
@@ -36,19 +36,19 @@ public class ShoppingCartController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping("/cart")
+    @RequestMapping(value = "/user/shoppingCart", method = RequestMethod.GET)
     public String shoppingCart(Model model, Principal principal){
         User user = userService.findByUsername(principal.getName());
         ShoppingCart shoppingCart = user.getShoppingCart();
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
-        shoppingCartService.updateShoppingCart(shoppingCart);
+        shoppingCart = shoppingCartService.updateShoppingCart(shoppingCart);
 
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", shoppingCart);
 
-        return "shoppingCart";
+        return "/user/shoppingCart";
     }
 
     @RequestMapping("/addItem")

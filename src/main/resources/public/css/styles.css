@@ -95,7 +95,6 @@ div.logout {
 .product-category {
   max-width:100%;
   height:auto;
-  max-height: 200px;
 }
 
 .col-sm-4{
@@ -358,4 +357,15 @@ footer .navbar .navbar-nav {
   display: block;
   margin: 0 auto;
   padding-top: 25px;
+}
+
+/*shopping CART*/
+
+.cart-row{
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+}
+
+.btn-checkout{
+  width: 100%;
 }

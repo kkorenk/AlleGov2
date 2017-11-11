@@ -6,12 +6,45 @@
 <header th:replace="layout :: navbar"/>
 
 <div class="container">
-    <div class="jumbotron">
-        <div class="row border-ftr">
-            <div class="col-sm-12">
-                A
+    <div class="alert alert-info" th:if="${cartItemList == null}">
+        Your cart is empty.
+    </div>
+    <div class="jumbotron" th:if="${cartItemList != null}">
+        <div class="row cart-row">
+            <div class="col-sm-3">
+            Product
+        </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+                Quantity:
+            </div>
+            <div class="col-sm-3">
+                Price:
             </div>
         </div>
+        <div class="row cart-row" th:each="cartItem : ${cartItemList}">
+            <div class="col-sm-3">
+                <img class="product-detail-img img-responsive" th:src="@{/img/product/} + ${cartItem.product.id} + '.png'"/>
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+                <p th:text="${cartItem.quantity}" ></p>
+            </div>
+            <div class="col-sm-3">
+                <p th:text="${cartItem.subTotal} + '$'" ></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-3">
+                <p th:text="'Total: ' + ${shoppingCart.total} + '$'" ></p>
+        </div>
+        <div class="col-sm-3">
+            <input type="submit" class="btn btn-danger btn-checkout" value="Checkout"/>
+        </div>
+    </div>
     </div>
 </div>
 
