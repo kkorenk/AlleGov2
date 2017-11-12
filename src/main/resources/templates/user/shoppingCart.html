@@ -11,46 +11,52 @@
     </div>
     <div class="jumbotron" th:if="${cartItemList != null}">
         <div class="row cart-row">
-            <div class="col-sm-3">
-            Product
-        </div>
-            <div class="col-sm-3">
-            </div>
-            <div class="col-sm-3">
-                Quantity:
-            </div>
-            <div class="col-sm-3">
-                Price:
-            </div>
+            <div class="col-sm-3">Product</div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">Price</div>
+            <div class="col-sm-1">Quantity</div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">Subtotal</div>
         </div>
         <div class="row cart-row" th:each="cartItem : ${cartItemList}">
             <form th:action="@{/user/updateCartItem}" method="post">
                 <input type="hidden" name="id" id="id" th:value="${cartItem.id}">
             <div class="col-sm-3">
-                <img class="product-detail-img img-responsive" th:src="@{/img/product/} + ${cartItem.product.id} + '.png'"/>
+                <img class="cart-img img-responsive" th:src="@{/img/product/} + ${cartItem.product.id} + '.png'"/>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
+                <div th:text="${cartItem.product.name}"></div>
             </div>
-            <div class="col-sm-3">
-                    <input type="number" name="qty" id="qty" min="1" max="100" th:value="${cartItem.quantity}">
-                    <button type="submit" class="btn btn-danger">Refresh</button>
+            <div class="col-sm-2">
+                <div th:text="${cartItem.product.price} + '$'" ></div>
             </div>
-            <div class="col-sm-3">
-                <p th:text="${cartItem.subTotal} + '$'" ></p>
+            <div class="col-sm-1">
+                <input type="number" class="form-control text-center" name="qty" id="qty" min="1" max="100" th:value="${cartItem.quantity}">
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+            <div class="col-sm-2">
+                <div th:text="${cartItem.subTotal} + '$'" ></div>
             </div>
             </form>
-            <form th:action="@{/user/removeItem}">
-                <input type="hidden" name="id" id="id" th:value="${cartItem.id}">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <div class="col-sm-1">
+                <form th:action="@{/user/removeItem}">
+                    <input type="hidden" name="id" id="id" th:value="${cartItem.id}">
+                    <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+            </div>
         </div>
-        <div class="col-sm-6">
-        </div>
-        <div class="col-sm-3">
-                <p th:text="'Total: ' + ${shoppingCart.total} + '$'" ></p>
-        </div>
-        <div class="col-sm-3">
-            <input type="submit" class="btn btn-danger btn-checkout" value="Checkout"/>
+        <div class="row last-row">
+            <div class="col-sm-2">
+                <a class="btn btn-primary" th:href="@{/products}" role="button">Continue shopping</a>
+            </div>
+            <div class="col-sm-8">
+                    <div class="total" th:text="'Total: ' + ${shoppingCart.total} + '$'" ></div>
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-danger btn-checkout" value="Checkout"/>
+            </div>
         </div>
     </div>
     </div>

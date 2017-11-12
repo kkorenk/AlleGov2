@@ -363,9 +363,24 @@ footer .navbar .navbar-nav {
 
 .cart-row{
   border-bottom: 1px solid lightgray;
+  padding: 10px;
+}
+
+
+.cart-img{
+  margin: 0 auto;
+  max-height: 100px;
+}
+
+.total {
+  float: right;
+  padding-top: 10px;
+}
+
+.last-row{
+  padding-top: 10px;
 }
 
 .btn-checkout{
-  width: 100%;
+  width: 80%;
 }
-
