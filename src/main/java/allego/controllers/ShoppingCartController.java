@@ -76,5 +76,13 @@ public class ShoppingCartController {
 
         return shoppingCart(model, principal);
     }
+
+    @RequestMapping("/user/removeItem")
+    public String removeItem(@ModelAttribute("id") Long id, Model model, Principal principal){
+
+        cartItemService.removeCartItem(cartItemService.findById(id));
+
+        return shoppingCart(model, principal);
+    }
 }
 
